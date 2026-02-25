@@ -116,19 +116,22 @@ export default function AddRecordPage() {
       {/* Header */}
       <div className="relative h-40 overflow-hidden">
         <Image
-          src="/images/headstones-detail.png"
-          alt="Cemetery headstones"
+          src="/images/cwgc-headstones.png"
+          alt="War graves headstones"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 to-stone-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/90 to-cwgc-green/40" />
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-6">
           <div>
-            <h1 className="text-2xl font-bold text-white mb-1">
+            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-1 font-medium">
+              Contribute
+            </p>
+            <h1 className="text-2xl font-bold text-cwgc-stone mb-1">
               Add Burial Record
             </h1>
-            <p className="text-stone-300 text-sm">
-              Contribute to the cemetery archive
+            <p className="text-cwgc-stone/70 text-sm">
+              Help preserve the cemetery archive
             </p>
           </div>
         </div>
