@@ -1,0 +1,422 @@
+[
+  {
+    "plotId": "A2",
+    "section": "A",
+    "plotNumber": 2,
+    "occupants": 1,
+    "summaryText": " Unknown"
+  },
+  {
+    "plotId": "A4",
+    "section": "A",
+    "plotNumber": 4,
+    "occupants": 2,
+    "summaryText": "Ann Little (d. 1883); William Little (d. 1905)"
+  },
+  {
+    "plotId": "A5",
+    "section": "A",
+    "plotNumber": 5,
+    "occupants": 1,
+    "summaryText": "Polly Tummey (d. 1894)"
+  },
+  {
+    "plotId": "A12",
+    "section": "A",
+    "plotNumber": 12,
+    "occupants": 2,
+    "summaryText": "Charlotte Walford (d. 1926); Richard Walford (d. 1918)"
+  },
+  {
+    "plotId": "A14",
+    "section": "A",
+    "plotNumber": 14,
+    "occupants": 2,
+    "summaryText": "Emma Carpenter (d. 1954); Oliver Carpenter (d. 1944)"
+  },
+  {
+    "plotId": "B2",
+    "section": "B",
+    "plotNumber": 2,
+    "occupants": 2,
+    "summaryText": "H L (d. 1853); L L (d. 1870)"
+  },
+  {
+    "plotId": "B7",
+    "section": "B",
+    "plotNumber": 7,
+    "occupants": 1,
+    "summaryText": "Dorothy Freeman (d. 1912)"
+  },
+  {
+    "plotId": "B8",
+    "section": "B",
+    "plotNumber": 8,
+    "occupants": 2,
+    "summaryText": "Esther Freeman (d. 1920); Hezekia Freeman (d. 1952)"
+  },
+  {
+    "plotId": "C2",
+    "section": "C",
+    "plotNumber": 2,
+    "occupants": 2,
+    "summaryText": "Mary Price (d. 1956); William Price (d. 1924)"
+  },
+  {
+    "plotId": "C7",
+    "section": "C",
+    "plotNumber": 7,
+    "occupants": 1,
+    "summaryText": "Joyce Duberley (d. 1948)"
+  },
+  {
+    "plotId": "C10",
+    "section": "C",
+    "plotNumber": 10,
+    "occupants": 4,
+    "summaryText": "Florence Jones (d. 1966); Henry Jones (d. 1968); Joseph Mason (d. 1943); Daniel Davies (d. 1886)"
+  },
+  {
+    "plotId": "C11",
+    "section": "C",
+    "plotNumber": 11,
+    "occupants": 1,
+    "summaryText": "Margaret Rosser (d. 1886)"
+  },
+  {
+    "plotId": "C21",
+    "section": "C",
+    "plotNumber": 21,
+    "occupants": 1,
+    "summaryText": " Unknown"
+  },
+  {
+    "plotId": "C24",
+    "section": "C",
+    "plotNumber": 24,
+    "occupants": 1,
+    "summaryText": "Edward Walford (d. 1893)"
+  },
+  {
+    "plotId": "D1",
+    "section": "D",
+    "plotNumber": 1,
+    "occupants": 1,
+    "summaryText": "Albert Chivers (d. 1911)"
+  },
+  {
+    "plotId": "D9",
+    "section": "D",
+    "plotNumber": 9,
+    "occupants": 1,
+    "summaryText": "William Freeman (d. 1946)"
+  },
+  {
+    "plotId": "F2",
+    "section": "F",
+    "plotNumber": 2,
+    "occupants": 3,
+    "summaryText": "Alfred Roberts (d. 1898); Jane Roberts (d. 1897); Sarah Roberts (d. 1903)"
+  },
+  {
+    "plotId": "F5",
+    "section": "F",
+    "plotNumber": 5,
+    "occupants": 3,
+    "summaryText": "Ellen Harman (d. 1981); Flora Harman (d. 1959); John Harman (d. 1947)"
+  },
+  {
+    "plotId": "F6",
+    "section": "F",
+    "plotNumber": 6,
+    "occupants": 1,
+    "summaryText": "Doris Meredith (d. 1955)"
+  },
+  {
+    "plotId": "F7",
+    "section": "F",
+    "plotNumber": 7,
+    "occupants": 2,
+    "summaryText": "Edith Lewis (d. 1971); William Lewis (d. 1974)"
+  },
+  {
+    "plotId": "F8",
+    "section": "F",
+    "plotNumber": 8,
+    "occupants": 2,
+    "summaryText": "Florrie Powell (d. 1981); William Powell (d. 1973)"
+  },
+  {
+    "plotId": "F13",
+    "section": "F",
+    "plotNumber": 13,
+    "occupants": 6,
+    "summaryText": "(Infant Daughter) Latham; Arthur Latham (d. 1915); Eddie Latham (d. 1899); Emma Latham (d. 1942); Eric Latham (d. 1981); Marguerite Latham (d. 1976)"
+  },
+  {
+    "plotId": "F14",
+    "section": "F",
+    "plotNumber": 14,
+    "occupants": 1,
+    "summaryText": "Emma Bright (d. 1972)"
+  },
+  {
+    "plotId": "F24",
+    "section": "F",
+    "plotNumber": 24,
+    "occupants": 1,
+    "summaryText": "Hannah George (d. 1903)"
+  },
+  {
+    "plotId": "F27",
+    "section": "F",
+    "plotNumber": 27,
+    "occupants": 2,
+    "summaryText": "Jean Knight (d. 1931); William Knight (d. 1931)"
+  },
+  {
+    "plotId": "G3",
+    "section": "G",
+    "plotNumber": 3,
+    "occupants": 2,
+    "summaryText": "Dorothy Bevan (d. 1931); Harry Bevan (d. 1955)"
+  },
+  {
+    "plotId": "G5",
+    "section": "G",
+    "plotNumber": 5,
+    "occupants": 2,
+    "summaryText": "Arthur Price (d. 1951); Gwendoline Price (d. 1965)"
+  },
+  {
+    "plotId": "G10",
+    "section": "G",
+    "plotNumber": 10,
+    "occupants": 1,
+    "summaryText": "Samuel Fletcher (d. 1915)"
+  },
+  {
+    "plotId": "G16",
+    "section": "G",
+    "plotNumber": 16,
+    "occupants": 2,
+    "summaryText": "Sophia Harman (d. 1949); William Harman (d. 1954)"
+  },
+  {
+    "plotId": "G17",
+    "section": "G",
+    "plotNumber": 17,
+    "occupants": 2,
+    "summaryText": "Horrace Barrett (d. 1968); Louisa Barrett (d. 1979)"
+  },
+  {
+    "plotId": "G20",
+    "section": "G",
+    "plotNumber": 20,
+    "occupants": 1,
+    "summaryText": "Mary Evans (d. 1959)"
+  },
+  {
+    "plotId": "G21",
+    "section": "G",
+    "plotNumber": 21,
+    "occupants": 2,
+    "summaryText": "Alfred Beard (d. 1950); Sarah Beard (d. 1974)"
+  },
+  {
+    "plotId": "G22",
+    "section": "G",
+    "plotNumber": 22,
+    "occupants": 2,
+    "summaryText": "John Beard (d. 1936); Mary Beard (d. 1957)"
+  },
+  {
+    "plotId": "G23",
+    "section": "G",
+    "plotNumber": 23,
+    "occupants": 1,
+    "summaryText": "Clara Hussey (d. 1965)"
+  },
+  {
+    "plotId": "G27",
+    "section": "G",
+    "plotNumber": 27,
+    "occupants": 2,
+    "summaryText": "Elizabeth Robbins (d. 1933); Richard Robbins (d. 1931)"
+  },
+  {
+    "plotId": "H3",
+    "section": "H",
+    "plotNumber": 3,
+    "occupants": 2,
+    "summaryText": "Clifford Whittington (d. 1913); Frederick Whittington (d. 1952)"
+  },
+  {
+    "plotId": "H4",
+    "section": "H",
+    "plotNumber": 4,
+    "occupants": 2,
+    "summaryText": "Eva Hale (d. 1971); Joseph Hale (d. 1953)"
+  },
+  {
+    "plotId": "H5",
+    "section": "H",
+    "plotNumber": 5,
+    "occupants": 2,
+    "summaryText": "Ethel Williams (d. 1970); Giles Williams (d. 1956)"
+  },
+  {
+    "plotId": "H7",
+    "section": "H",
+    "plotNumber": 7,
+    "occupants": 1,
+    "summaryText": "Harold Carter (d. 1956)"
+  },
+  {
+    "plotId": "H8",
+    "section": "H",
+    "plotNumber": 8,
+    "occupants": 2,
+    "summaryText": "Margaret Martin (d. 1978); Stanley Martin (d. 1959)"
+  },
+  {
+    "plotId": "H10",
+    "section": "H",
+    "plotNumber": 10,
+    "occupants": 1,
+    "summaryText": "Eliza Flewelling (d. 1958)"
+  },
+  {
+    "plotId": "H11",
+    "section": "H",
+    "plotNumber": 11,
+    "occupants": 2,
+    "summaryText": "Emily Gunter (d. 1964); James Gunter (d. 1956)"
+  },
+  {
+    "plotId": "H12",
+    "section": "H",
+    "plotNumber": 12,
+    "occupants": 2,
+    "summaryText": "Jessie Fletcher (d. 1952); John Fletcher (d. 1953)"
+  },
+  {
+    "plotId": "H13",
+    "section": "H",
+    "plotNumber": 13,
+    "occupants": 1,
+    "summaryText": "Sarah (Cissie) Turner (d. 1957)"
+  },
+  {
+    "plotId": "H14",
+    "section": "H",
+    "plotNumber": 14,
+    "occupants": 1,
+    "summaryText": "Arthur George (d. 1961)"
+  },
+  {
+    "plotId": "H17",
+    "section": "H",
+    "plotNumber": 17,
+    "occupants": 2,
+    "summaryText": "Elsie Andrews (d. 1963); Thomas Andrews (d. 1962)"
+  },
+  {
+    "plotId": "H18",
+    "section": "H",
+    "plotNumber": 18,
+    "occupants": 2,
+    "summaryText": "Dougles Morris (d. 1967); Marjorie Morris (d. 1979)"
+  },
+  {
+    "plotId": "H19",
+    "section": "H",
+    "plotNumber": 19,
+    "occupants": 2,
+    "summaryText": "Bartley Neal (d. 1952); Rhoda Neal (d. 1953)"
+  },
+  {
+    "plotId": "H20",
+    "section": "H",
+    "plotNumber": 20,
+    "occupants": 3,
+    "summaryText": "Albert Fluck (d. 1957); Jane Fluck (d. 1968); Matilda Fluck (d. 1943)"
+  },
+  {
+    "plotId": "H22",
+    "section": "H",
+    "plotNumber": 22,
+    "occupants": 1,
+    "summaryText": "John Wadley (d. 1941)"
+  },
+  {
+    "plotId": "H23",
+    "section": "H",
+    "plotNumber": 23,
+    "occupants": 1,
+    "summaryText": "Ethel Harper (d. 1939)"
+  },
+  {
+    "plotId": "H27",
+    "section": "H",
+    "plotNumber": 27,
+    "occupants": 4,
+    "summaryText": "Ayland Harper (d. 1936); Morgan Harper (d. 1964); Albert Jones (d. 1962); Marion Jones (d. 1999)"
+  },
+  {
+    "plotId": "I9",
+    "section": "I",
+    "plotNumber": 9,
+    "occupants": 5,
+    "summaryText": "Ada Flewelling (d. 1977); George Flewelling (d. 1998); George Flewelling; Kathleen Flewelling (d. 1992); May Flewelling (d. 1983)"
+  },
+  {
+    "plotId": "I13",
+    "section": "I",
+    "plotNumber": 13,
+    "occupants": 2,
+    "summaryText": "Ethel Morris (d. 1975); Frederick Morris (d. 1973)"
+  },
+  {
+    "plotId": "I14",
+    "section": "I",
+    "plotNumber": 14,
+    "occupants": 1,
+    "summaryText": "George Kear (d. 1972)"
+  },
+  {
+    "plotId": "I15",
+    "section": "I",
+    "plotNumber": 15,
+    "occupants": 2,
+    "summaryText": "Esther Powell (d. 1986); Sydney Powell (d. 1972)"
+  },
+  {
+    "plotId": "I16",
+    "section": "I",
+    "plotNumber": 16,
+    "occupants": 1,
+    "summaryText": "Baden Snooks (d. 1970)"
+  },
+  {
+    "plotId": "I20",
+    "section": "I",
+    "plotNumber": 20,
+    "occupants": 2,
+    "summaryText": "Bertie Brain (d. 1973); Hannah Brain (d. 1969)"
+  },
+  {
+    "plotId": "I21",
+    "section": "I",
+    "plotNumber": 21,
+    "occupants": 2,
+    "summaryText": "Doris Powell (d. 1967); Leslie Powell (d. 1969)"
+  },
+  {
+    "plotId": "I24",
+    "section": "I",
+    "plotNumber": 24,
+    "occupants": 2,
+    "summaryText": "James Webb (d. 1971); Margaret Webb (d. 1955)"
+  }
+]
