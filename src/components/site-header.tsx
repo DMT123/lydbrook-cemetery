@@ -23,24 +23,24 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
-      <div className="container mx-auto flex h-16 items-center px-4">
-        <Link href="/" className="mr-6 flex items-center gap-3">
+      <div className="container mx-auto flex h-14 md:h-16 items-center px-4">
+        <Link href="/" className="mr-4 lg:mr-6 flex items-center gap-2 md:gap-3 shrink-0">
           <Image
             src="/images/lydbrook-baptist-church-logo.png"
             alt="Lydbrook Baptist Church"
             width={140}
             height={50}
-            className="h-10 w-auto"
+            className="h-8 md:h-10 w-auto"
             priority
           />
-          <div className="hidden sm:block border-l border-border pl-3">
+          <div className="hidden md:block border-l border-border pl-3">
             <p className="text-[11px] font-medium text-church-blue leading-tight">
               Cemetery Records
             </p>
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -63,13 +63,13 @@ export function SiteHeader() {
           href="https://www.lydbrookbaptist.co.uk"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden lg:flex items-center gap-1 text-xs text-church-blue hover:text-church-blue-light transition-colors"
+          className="hidden xl:flex items-center gap-1 text-xs text-church-blue hover:text-church-blue-light transition-colors"
         >
           lydbrookbaptist.co.uk &rarr;
         </a>
 
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon">
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle menu</span>

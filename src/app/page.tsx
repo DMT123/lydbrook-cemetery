@@ -34,15 +34,15 @@ function StatCard({
 }) {
   return (
     <Card className="border shadow-md bg-white/90 backdrop-blur">
-      <CardContent className="flex items-center gap-4 p-6">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          <Icon className="h-6 w-6" />
+      <CardContent className="flex items-center gap-3 p-4 md:p-6">
+        <div className="flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
-        <div>
-          <p className="text-2xl font-bold tabular-nums">
+        <div className="min-w-0">
+          <p className="text-lg md:text-2xl font-bold tabular-nums truncate">
             {value ?? <span className="animate-pulse">--</span>}
           </p>
-          <p className="text-sm text-muted-foreground">{label}</p>
+          <p className="text-xs md:text-sm text-muted-foreground">{label}</p>
         </div>
       </CardContent>
     </Card>
@@ -64,7 +64,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] min-h-[420px] md:h-[70vh] md:min-h-[500px] flex items-center justify-center overflow-hidden">
         <Image
           src="/images/lydbrook-chapel-path.png"
           alt="Lydbrook Baptist Church with the burial ground on the hillside behind"
@@ -167,7 +167,7 @@ export default function HomePage() {
       </section>
 
       {/* About the Cemetery */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-12 md:py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-4">The Burial Ground</h2>
@@ -217,14 +217,14 @@ export default function HomePage() {
       </section>
 
       {/* Gallery */}
-      <section className="bg-church-blue py-16">
+      <section className="bg-church-blue py-10 md:py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-white">
               The Cemetery &amp; Surroundings
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
               <Image
                 src="/images/lydbrook-valley-view.png"
@@ -266,7 +266,7 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-3">Explore the Archives</h2>
@@ -275,7 +275,7 @@ export default function HomePage() {
               help preserve the history of this Forest of Dean community.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             <FeatureCard
               href="/records"
               icon={Search}
@@ -309,7 +309,7 @@ export default function HomePage() {
       </section>
 
       {/* Location Map */}
-      <section className="bg-church-warm py-16">
+      <section className="bg-church-warm py-10 md:py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
