@@ -13,7 +13,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/records", label: "Records" },
   { href: "/cemetery-plan", label: "Cemetery Plan" },
-  { href: "/add-record", label: "Add Record" },
+  { href: "/add-record", label: "Submit Record" },
   { href: "/about", label: "About" },
 ];
 

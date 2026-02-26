@@ -41,4 +41,32 @@ export default defineSchema({
   })
     .index("by_plotId", ["plotId"])
     .index("by_section", ["section"]),
+
+  admins: defineTable({
+    username: v.string(),
+    passwordHash: v.string(),
+    createdAt: v.number(),
+  }).index("by_username", ["username"]),
+
+  sessions: defineTable({
+    adminId: v.id("admins"),
+    token: v.string(),
+    expiresAt: v.number(),
+  }).index("by_token", ["token"]),
+
+  submissions: defineTable({
+    submitterName: v.string(),
+    submitterEmail: v.string(),
+    burialSurname: v.string(),
+    burialGivenName: v.optional(v.string()),
+    burialYear: v.optional(v.string()),
+    burialPlot: v.optional(v.string()),
+    relationship: v.optional(v.string()),
+    additionalInfo: v.string(),
+    status: v.string(),
+    adminNotes: v.optional(v.string()),
+    createdAt: v.number(),
+  })
+    .index("by_status", ["status"])
+    .index("by_date", ["createdAt"]),
 });

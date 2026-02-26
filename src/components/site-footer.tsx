@@ -40,7 +40,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link href="/add-record" className="hover:text-white transition-colors">
-                  Add a Record
+                  Submit a Record
                 </Link>
               </li>
               <li>
@@ -92,6 +92,13 @@ export function SiteFooter() {
           <p className="mt-1">
             &copy; {new Date().getFullYear()} Lydbrook Baptist Church Cemetery
             Records
+            <span className="mx-2">&middot;</span>
+            <Link
+              href="/admin"
+              className="hover:text-white/70 transition-colors"
+            >
+              Admin
+            </Link>
           </p>
         </div>
       </div>

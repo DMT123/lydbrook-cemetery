@@ -8,8 +8,11 @@
  * @module
  */
 
+import type * as admin from "../admin.js";
+import type * as adminActions from "../adminActions.js";
 import type * as burials from "../burials.js";
 import type * as plots from "../plots.js";
+import type * as submissions from "../submissions.js";
 
 import type {
   ApiFromModules,
@@ -18,8 +21,11 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  admin: typeof admin;
+  adminActions: typeof adminActions;
   burials: typeof burials;
   plots: typeof plots;
+  submissions: typeof submissions;
 }>;
 
 /**

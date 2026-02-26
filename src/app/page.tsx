@@ -293,8 +293,8 @@ export default function HomePage() {
             <FeatureCard
               href="/add-record"
               icon={Plus}
-              title="Add Records"
-              description="Contribute new burial information from family knowledge or headstone surveys."
+              title="Submit Record"
+              description="Request a record addition from family knowledge or headstone surveys."
               image="/images/lydbrook-chapel-path.png"
             />
             <FeatureCard
