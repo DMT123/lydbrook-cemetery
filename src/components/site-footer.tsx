@@ -7,13 +7,13 @@ export function SiteFooter() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div className="mb-4">
+            <div className="mb-4 bg-white/95 rounded-lg inline-block px-3 py-2">
               <Image
                 src="/images/lydbrook-baptist-church-logo.png"
                 alt="Lydbrook Baptist Church"
                 width={160}
                 height={56}
-                className="h-12 w-auto brightness-0 invert opacity-90"
+                className="h-10 w-auto"
               />
             </div>
             <p className="text-xs text-white/40 mb-2 italic">
