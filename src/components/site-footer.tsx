@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Church } from "lucide-react";
+import Image from "next/image";
 
 export function SiteFooter() {
   return (
@@ -7,17 +7,18 @@ export function SiteFooter() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Church className="h-5 w-5 text-white/90" />
-              <div>
-                <p className="text-sm font-semibold leading-tight text-white">
-                  Lydbrook Baptist Church
-                </p>
-                <p className="text-[11px] text-white/50 leading-tight">
-                  Cemetery Records
-                </p>
-              </div>
+            <div className="mb-4">
+              <Image
+                src="/images/lydbrook-baptist-church-logo.png"
+                alt="Lydbrook Baptist Church"
+                width={160}
+                height={56}
+                className="h-12 w-auto brightness-0 invert opacity-90"
+              />
             </div>
+            <p className="text-xs text-white/40 mb-2 italic">
+              Loving God, Serving our community
+            </p>
             <p className="text-sm text-white/50 max-w-xs leading-relaxed">
               Preserving the records of those laid to rest in the burial ground
               behind Lydbrook Baptist Church, Forest of Dean, Gloucestershire.
@@ -43,6 +44,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About This Project
+                </Link>
+              </li>
+              <li>
                 <a
                   href="https://www.lydbrookbaptist.co.uk"
                   target="_blank"
@@ -61,6 +67,15 @@ export function SiteFooter() {
               <p>Lydbrook Baptist Church</p>
               <p>Lower Lydbrook</p>
               <p>Gloucestershire, GL17 9NA</p>
+              <p className="mt-2">
+                <a
+                  href="mailto:info@lydbrookbaptist.co.uk"
+                  className="hover:text-white transition-colors"
+                >
+                  info@lydbrookbaptist.co.uk
+                </a>
+              </p>
+              <p>Tel: 01594 833251</p>
             </address>
             <p className="text-xs text-white/40 mt-3">
               The burial ground is at the rear of the church, accessed via a

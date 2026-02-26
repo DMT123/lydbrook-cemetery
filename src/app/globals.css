@@ -46,13 +46,14 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Church-inspired palette */
-  --color-church-blue: #2c3e6b;
-  --color-church-blue-light: #3d5a99;
-  --color-church-slate: #475569;
+  /* Lydbrook Baptist Church brand colours */
+  --color-church-blue: #166093;
+  --color-church-blue-light: #3498db;
+  --color-church-green: #4a9e3f;
+  --color-church-brown: #7b5b3a;
+  --color-church-gold: #D69746;
   --color-church-stone: #f8f6f3;
   --color-church-warm: #f1ede6;
-  --color-church-amber: #b45309;
   --color-church-safety: #dc2626;
 }
 
@@ -64,8 +65,8 @@
   --card-foreground: #1e293b;
   --popover: #ffffff;
   --popover-foreground: #1e293b;
-  --primary: #2c3e6b;
-  --primary-foreground: #f8fafc;
+  --primary: #166093;
+  --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #1e293b;
   --muted: #f1ede6;
@@ -75,20 +76,20 @@
   --destructive: #dc2626;
   --border: #e2e0db;
   --input: #e2e0db;
-  --ring: #3d5a99;
-  --chart-1: #2c3e6b;
-  --chart-2: #b45309;
-  --chart-3: #475569;
-  --chart-4: #3d5a99;
-  --chart-5: #dc2626;
+  --ring: #3498db;
+  --chart-1: #166093;
+  --chart-2: #D69746;
+  --chart-3: #4a9e3f;
+  --chart-4: #3498db;
+  --chart-5: #7b5b3a;
   --sidebar: #f8f6f3;
   --sidebar-foreground: #1e293b;
-  --sidebar-primary: #2c3e6b;
-  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-primary: #166093;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f1f5f9;
   --sidebar-accent-foreground: #1e293b;
   --sidebar-border: #e2e0db;
-  --sidebar-ring: #3d5a99;
+  --sidebar-ring: #3498db;
 }
 
 .dark {
@@ -98,7 +99,7 @@
   --card-foreground: #f1f5f9;
   --popover: #1e293b;
   --popover-foreground: #f1f5f9;
-  --primary: #93a9d8;
+  --primary: #5bade8;
   --primary-foreground: #0f172a;
   --secondary: #1e293b;
   --secondary-foreground: #f1f5f9;
@@ -109,20 +110,20 @@
   --destructive: #dc2626;
   --border: #334155;
   --input: #334155;
-  --ring: #93a9d8;
-  --chart-1: #93a9d8;
-  --chart-2: #b45309;
+  --ring: #5bade8;
+  --chart-1: #5bade8;
+  --chart-2: #D69746;
   --chart-3: #dc2626;
   --chart-4: #f1f5f9;
   --chart-5: #475569;
   --sidebar: #1e293b;
   --sidebar-foreground: #f1f5f9;
-  --sidebar-primary: #93a9d8;
+  --sidebar-primary: #5bade8;
   --sidebar-primary-foreground: #0f172a;
   --sidebar-accent: #1e293b;
   --sidebar-accent-foreground: #f1f5f9;
   --sidebar-border: #334155;
-  --sidebar-ring: #93a9d8;
+  --sidebar-ring: #5bade8;
 }
 
 @layer base {
