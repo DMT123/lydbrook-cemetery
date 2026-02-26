@@ -1,103 +1,82 @@
 import Link from "next/link";
+import { Church } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-cwgc-green text-cwgc-stone/80">
-      {/* Gold separator line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-cwgc-gold/60 to-transparent" />
-
+    <footer className="bg-church-blue text-white/80">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <svg
-                viewBox="0 0 24 32"
-                className="h-7 w-5 text-cwgc-gold"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path d="M12 2 L12 28" />
-                <path d="M5 10 L19 10" />
-                <path d="M12 28 L8 32 L16 32 Z" fill="currentColor" strokeWidth="0" />
-              </svg>
+              <Church className="h-5 w-5 text-white/90" />
               <div>
-                <p className="text-sm font-semibold leading-tight text-cwgc-gold tracking-wide">
-                  Lydbrook War Graves
+                <p className="text-sm font-semibold leading-tight text-white">
+                  Lydbrook Baptist Church
                 </p>
-                <p className="text-[11px] text-cwgc-stone/50 leading-tight tracking-wider uppercase">
-                  Baptist Church Cemetery
+                <p className="text-[11px] text-white/50 leading-tight">
+                  Cemetery Records
                 </p>
               </div>
             </div>
-            <p className="text-sm text-cwgc-stone/60 max-w-xs leading-relaxed">
-              Preserving the memory of those laid to rest in the cemetery behind
-              Lower Lydbrook Baptist Church, Forest of Dean, Gloucestershire.
-            </p>
-            <p className="text-xs text-cwgc-gold/60 mt-3 italic">
-              &ldquo;Their Name Liveth for Evermore&rdquo;
+            <p className="text-sm text-white/50 max-w-xs leading-relaxed">
+              Preserving the records of those laid to rest in the burial ground
+              behind Lydbrook Baptist Church, Forest of Dean, Gloucestershire.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-3 text-cwgc-gold tracking-wide uppercase text-[11px]">
-              Quick Links
-            </h3>
-            <ul className="space-y-2 text-sm text-cwgc-stone/70">
+            <h3 className="font-semibold text-sm mb-3 text-white/90">Quick Links</h3>
+            <ul className="space-y-2 text-sm text-white/60">
               <li>
-                <Link href="/records" className="hover:text-cwgc-gold transition-colors">
+                <Link href="/records" className="hover:text-white transition-colors">
                   Search Records
                 </Link>
               </li>
               <li>
-                <Link href="/cemetery-plan" className="hover:text-cwgc-gold transition-colors">
+                <Link href="/cemetery-plan" className="hover:text-white transition-colors">
                   Cemetery Plan
                 </Link>
               </li>
               <li>
-                <Link href="/add-record" className="hover:text-cwgc-gold transition-colors">
+                <Link href="/add-record" className="hover:text-white transition-colors">
                   Add a Record
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-cwgc-gold transition-colors">
-                  About This Project
-                </Link>
+                <a
+                  href="https://www.lydbrookbaptist.co.uk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Lydbrook Baptist Church &rarr;
+                </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-3 text-cwgc-gold tracking-wide uppercase text-[11px]">
-              Location
-            </h3>
-            <address className="text-sm text-cwgc-stone/70 not-italic space-y-1">
-              <p>Lower Lydbrook Baptist Church</p>
-              <p>Main Road (B4234)</p>
-              <p>Lydbrook, GL17 9NA</p>
-              <p>Forest of Dean, Gloucestershire</p>
+            <h3 className="font-semibold text-sm mb-3 text-white/90">Location</h3>
+            <address className="text-sm text-white/60 not-italic space-y-1">
+              <p>Lydbrook Baptist Church</p>
+              <p>Lower Lydbrook</p>
+              <p>Gloucestershire, GL17 9NA</p>
             </address>
-            <div className="mt-4">
-              <a
-                href="https://www.cwgc.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-cwgc-stone/50 hover:text-cwgc-gold transition-colors"
-              >
-                Commonwealth War Graves Commission &rarr;
-              </a>
-            </div>
+            <p className="text-xs text-white/40 mt-3">
+              The burial ground is at the rear of the church, accessed via a
+              steep path. Please wear sturdy footwear.
+            </p>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-cwgc-gold/10 text-center">
-          <p className="text-xs text-cwgc-stone/40">
+        <div className="mt-10 pt-6 border-t border-white/10 text-center text-xs text-white/40">
+          <p>
             Records compiled from burial certificates, headstone engravings, and
             parish archives.
           </p>
-          <p className="mt-1 text-xs text-cwgc-stone/40">
-            &copy; {new Date().getFullYear()} Lydbrook War Graves Cemetery
-            Project
+          <p className="mt-1">
+            &copy; {new Date().getFullYear()} Lydbrook Baptist Church Cemetery
+            Records
           </p>
         </div>
       </div>

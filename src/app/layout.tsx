@@ -17,20 +17,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lydbrook War Graves | Baptist Church Cemetery",
+  title: "Lydbrook Baptist Church Cemetery | Burial Records",
   description:
-    "Burial records and cemetery plan for the war graves behind Lower Lydbrook Baptist Church, Forest of Dean, Gloucestershire. Search and explore over 200 historic records spanning 1853 to present.",
+    "Burial records and cemetery plan for the burial ground behind Lydbrook Baptist Church, Lower Lydbrook, Forest of Dean, Gloucestershire. Search over 200 records spanning 1853 to 2011.",
   keywords: [
     "Lydbrook",
-    "war graves",
-    "CWGC",
-    "Commonwealth War Graves",
     "Baptist church",
+    "cemetery",
     "burial records",
+    "burial ground",
     "Forest of Dean",
     "Gloucestershire",
     "genealogy",
-    "cemetery",
+    "graveyard",
+    "Lower Lydbrook",
+    "GL17 9NA",
   ],
 };
 

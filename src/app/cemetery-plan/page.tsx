@@ -49,21 +49,18 @@ function CemeteryPlanContent() {
       {/* Header */}
       <div className="relative h-48 overflow-hidden">
         <Image
-          src="/images/cemetery-overview.png"
-          alt="Cemetery overview showing sections and headstones"
+          src="/images/burial-ground-interior.png"
+          alt="The burial ground behind Lydbrook Baptist Church"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/90 to-cwgc-green/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 to-slate-900/40" />
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-8">
           <div>
-            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-1 font-medium">
-              Interactive Map
-            </p>
-            <h1 className="text-3xl font-bold text-cwgc-stone mb-1">
+            <h1 className="text-3xl font-bold text-white mb-1">
               Cemetery Plan
             </h1>
-            <p className="text-cwgc-stone/70">
+            <p className="text-slate-300">
               All 9 sections and {PLOTS_PER_SECTION * 9} plots
             </p>
           </div>

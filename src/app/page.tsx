@@ -14,6 +14,8 @@ import {
   LayoutGrid,
   ChevronRight,
   ExternalLink,
+  AlertTriangle,
+  Footprints,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -31,13 +33,13 @@ function StatCard({
   label: string;
 }) {
   return (
-    <Card className="border border-cwgc-gold/20 shadow-md bg-white/90 backdrop-blur">
+    <Card className="border shadow-md bg-white/90 backdrop-blur">
       <CardContent className="flex items-center gap-4 p-6">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-cwgc-green/10 text-cwgc-green">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
           <Icon className="h-6 w-6" />
         </div>
         <div>
-          <p className="text-2xl font-bold tabular-nums text-cwgc-green">
+          <p className="text-2xl font-bold tabular-nums">
             {value ?? <span className="animate-pulse">--</span>}
           </p>
           <p className="text-sm text-muted-foreground">{label}</p>
@@ -61,48 +63,35 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[75vh] min-h-[550px] flex items-center justify-center overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/images/lydbrook-baptist-church-cemetery.png"
-          alt="Lydbrook Baptist Church with war graves cemetery behind"
+          src="/images/lydbrook-chapel-path.png"
+          alt="Lydbrook Baptist Church with the burial ground on the hillside behind"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/90 via-cwgc-green/50 to-cwgc-green/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/45 to-slate-900/20" />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <div className="flex justify-center mb-4">
-            <svg
-              viewBox="0 0 24 32"
-              className="h-10 w-8 text-cwgc-gold"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            >
-              <path d="M12 1 L12 27" />
-              <path d="M4 9 L20 9" />
-              <path d="M12 27 L8 31 L16 31 Z" fill="currentColor" strokeWidth="0" />
-            </svg>
-          </div>
-          <p className="text-cwgc-gold text-xs tracking-[0.3em] uppercase mb-3 font-medium">
+          <p className="text-blue-200 text-xs tracking-[0.25em] uppercase mb-3 font-medium">
             Forest of Dean &middot; Gloucestershire
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
-            Lydbrook War Graves
+            Lydbrook Baptist Church
           </h1>
-          <p className="text-cwgc-gold-light text-lg md:text-xl font-light mb-1">
-            Baptist Church Cemetery
+          <p className="text-blue-100 text-lg md:text-xl font-light mb-1">
+            Cemetery Records
           </p>
-          <p className="text-cwgc-stone/70 text-sm md:text-base mb-8 max-w-lg mx-auto">
-            Honouring those laid to rest behind Lower Lydbrook Baptist Church.
-            Search and explore over {stats?.totalBurials ?? 200} burial records
-            spanning from 1853 to the present day.
+          <p className="text-slate-300 text-sm md:text-base mb-8 max-w-lg mx-auto">
+            Explore over {stats?.totalBurials ?? 200} burial records from the
+            burial ground behind Lydbrook Baptist Church, spanning from 1853 to
+            the present day.
           </p>
 
           <form
             onSubmit={handleSearch}
-            className="flex items-center gap-2 max-w-md mx-auto bg-white/95 backdrop-blur rounded-lg p-1.5 shadow-xl border border-cwgc-gold/20"
+            className="flex items-center gap-2 max-w-md mx-auto bg-white/95 backdrop-blur rounded-lg p-1.5 shadow-xl"
           >
             <Search className="h-5 w-5 text-muted-foreground ml-3 shrink-0" />
             <Input
@@ -112,17 +101,10 @@ export default function HomePage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="border-0 shadow-none focus-visible:ring-0 text-foreground placeholder:text-muted-foreground"
             />
-            <Button type="submit" size="sm" className="bg-cwgc-green hover:bg-cwgc-green-light">
+            <Button type="submit" size="sm">
               Search
             </Button>
           </form>
-        </div>
-
-        {/* Remembrance quote */}
-        <div className="absolute bottom-4 left-0 right-0 text-center">
-          <p className="text-cwgc-gold/50 text-xs tracking-widest italic">
-            &ldquo;Their Name Liveth for Evermore&rdquo;
-          </p>
         </div>
       </section>
 
@@ -156,54 +138,77 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Safety Warning */}
+      <section className="container mx-auto px-4 mt-8">
+        <div className="rounded-xl border-2 border-amber-400 bg-amber-50 p-5 md:p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+              <AlertTriangle className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-amber-900 mb-1">
+                Visitor Safety &mdash; Please Read Before Visiting
+              </h3>
+              <p className="text-sm text-amber-800 leading-relaxed mb-2">
+                The burial ground is at the rear of Lydbrook Baptist Church and
+                is accessed via a <strong>steep, narrow path</strong> that leads
+                up around the side of the church on the side of a{" "}
+                <strong>steep hill</strong>. The ground within the cemetery is{" "}
+                <strong>very uneven</strong> with exposed roots, sunken areas,
+                and some memorial stones that may be unstable.
+              </p>
+              <div className="flex items-center gap-2 text-sm font-medium text-amber-900">
+                <Footprints className="h-4 w-4" />
+                Please take care and wear sturdy footwear when visiting.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About the Cemetery */}
       <section className="container mx-auto px-4 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-2 font-medium">
-              About the Cemetery
-            </p>
-            <h2 className="text-3xl font-bold mb-4 text-cwgc-green">
-              A Place of Remembrance
-            </h2>
+            <h2 className="text-3xl font-bold mb-4">The Burial Ground</h2>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              The cemetery is situated behind Lower Lydbrook Baptist Church on
-              the B4234 (Main Road), nestled in the steep wooded valley of the
-              Forest of Dean. Founded in 1812, the Baptist Chapel has served the
-              community for over two centuries, and the grounds behind the church
-              have been a place of burial since the mid-19th century.
+              The burial ground is situated behind Lydbrook Baptist Church on
+              the B4234 in Lower Lydbrook, nestled in the steep wooded valley of
+              the Forest of Dean. The Baptist Chapel was founded in 1812 and
+              moved to its present site in 1864, built from Forest and
+              Monmouthshire stone.
             </p>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              The cemetery is organised into nine sections (A through I), each
-              containing 27 individual plots. The burial records span from 1853
-              to 2011, documenting the lives of local families &mdash; miners,
-              farmers, and tradespeople of the Forest of Dean &mdash; whose names are
-              woven into the fabric of Lydbrook&apos;s history.
+              The cemetery, now closed for new burials, is organised into nine
+              sections (A through I), each containing 27 individual plots. The
+              records span from 1853 to 2011, documenting the lives of local
+              families &mdash; miners, farmers, and tradespeople of the Forest of
+              Dean.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              This digital archive preserves these records, making them
-              accessible to family historians, genealogists, and anyone with a
-              connection to Lydbrook and the Forest of Dean.
+              There is open access for anyone who wishes to visit a family grave.
+              This digital archive was created to preserve the burial records
+              and make them accessible to family historians and genealogists.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/records">
-                <Button className="bg-cwgc-green hover:bg-cwgc-green-light">
+                <Button>
                   <BookOpen className="mr-2 h-4 w-4" />
                   Browse Records
                 </Button>
               </Link>
               <Link href="/cemetery-plan">
-                <Button variant="outline" className="border-cwgc-green/30 text-cwgc-green hover:bg-cwgc-green/5">
+                <Button variant="outline">
                   <MapPin className="mr-2 h-4 w-4" />
                   View Cemetery Plan
                 </Button>
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-cwgc-gold/20">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <Image
-              src="/images/cross-of-sacrifice.png"
-              alt="Cross of Sacrifice at the cemetery entrance with Baptist Church behind"
+              src="/images/burial-ground-interior.png"
+              alt="The burial ground behind Lydbrook Baptist Church, showing old headstones on the steep hillside"
               fill
               className="object-cover"
             />
@@ -211,52 +216,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Image Gallery - CWGC Style */}
-      <section className="bg-cwgc-green py-16">
+      {/* Gallery */}
+      <section className="bg-church-blue py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
-            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-2 font-medium">
-              The Grounds
-            </p>
-            <h2 className="text-2xl font-bold text-cwgc-stone">
-              Lydbrook Baptist Church Cemetery
+            <h2 className="text-2xl font-bold text-white">
+              The Cemetery &amp; Surroundings
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
               <Image
-                src="/images/lydbrook-overview.png"
-                alt="Aerial view of Lydbrook village showing the Baptist Church and cemetery"
+                src="/images/lydbrook-valley-view.png"
+                alt="View down the steep path towards Lydbrook village and the Baptist Church"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/60 to-transparent" />
-              <p className="absolute bottom-3 left-3 text-cwgc-stone text-sm font-medium">
-                Lydbrook Village &amp; Church
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+              <p className="absolute bottom-3 left-3 text-white text-sm font-medium">
+                The Steep Path to the Cemetery
               </p>
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
               <Image
-                src="/images/cwgc-headstones.png"
-                alt="Rows of Commonwealth War Graves headstones with poppies"
+                src="/images/old-headstones-detail.png"
+                alt="Weathered Victorian headstones in the burial ground"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/60 to-transparent" />
-              <p className="absolute bottom-3 left-3 text-cwgc-stone text-sm font-medium">
-                War Graves Headstones
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+              <p className="absolute bottom-3 left-3 text-white text-sm font-medium">
+                Historic Headstones
               </p>
             </div>
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden group">
               <Image
-                src="/images/cemetery-overview.png"
-                alt="Overview of the cemetery grounds with headstones and paths"
+                src="/images/burial-ground-interior.png"
+                alt="Inside the burial ground with Forest of Dean views"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/60 to-transparent" />
-              <p className="absolute bottom-3 left-3 text-cwgc-stone text-sm font-medium">
-                Cemetery Grounds
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+              <p className="absolute bottom-3 left-3 text-white text-sm font-medium">
+                Burial Ground &amp; Valley Views
               </p>
             </div>
           </div>
@@ -267,15 +269,10 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-2 font-medium">
-              Explore
-            </p>
-            <h2 className="text-3xl font-bold mb-3 text-cwgc-green">
-              Navigate the Archives
-            </h2>
+            <h2 className="text-3xl font-bold mb-3">Explore the Archives</h2>
             <p className="text-muted-foreground max-w-lg mx-auto">
               Search burial records, explore the interactive cemetery plan, and
-              contribute to the ongoing preservation effort.
+              help preserve the history of this Forest of Dean community.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -283,64 +280,66 @@ export default function HomePage() {
               href="/records"
               icon={Search}
               title="Search Records"
-              description="Find burial records by name, year, or section. Full-text search across all archived records."
-              image="/images/cwgc-headstones.png"
+              description="Find burial records by surname, year, or section with full-text search."
+              image="/images/old-headstones-detail.png"
             />
             <FeatureCard
               href="/cemetery-plan"
               icon={MapPin}
               title="Cemetery Plan"
-              description="Interactive layout of all 9 sections (A–I) and 243 plots. See who is buried where."
-              image="/images/cemetery-overview.png"
+              description="Interactive layout of all 9 sections (A–I) and 243 plots."
+              image="/images/burial-ground-interior.png"
             />
             <FeatureCard
               href="/add-record"
               icon={Plus}
               title="Add Records"
-              description="Contribute new burial information to help complete the cemetery records."
-              image="/images/headstones-detail.png"
+              description="Contribute new burial information from family knowledge or headstone surveys."
+              image="/images/lydbrook-chapel-path.png"
             />
             <FeatureCard
               href="/about"
               icon={BookOpen}
               title="About"
-              description="Learn about the history of Lydbrook Baptist Church and this preservation project."
-              image="/images/lydbrook-overview.png"
+              description="History of Lydbrook Baptist Church and this preservation project."
+              image="/images/lydbrook-valley-view.png"
             />
           </div>
         </div>
       </section>
 
       {/* Location Map */}
-      <section className="bg-cwgc-stone py-16">
+      <section className="bg-church-warm py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-2 font-medium">
-                Find Us
-              </p>
-              <h2 className="text-2xl font-bold mb-4 text-cwgc-green">
-                Location
-              </h2>
+              <h2 className="text-2xl font-bold mb-4">Find Us</h2>
               <div className="space-y-4 text-muted-foreground text-sm leading-relaxed">
                 <p>
-                  The cemetery is located behind <strong>Lower Lydbrook
-                  Baptist Church</strong> on the B4234 (Main Road), in the
-                  village of Lydbrook in the Forest of Dean.
+                  The burial ground is at the rear of{" "}
+                  <strong>Lydbrook Baptist Church</strong> in Lower Lydbrook.
+                  Access is via a steep path around the side of the church.
                 </p>
-                <address className="not-italic bg-white rounded-lg p-4 border border-cwgc-gold/20">
-                  <p className="font-semibold text-foreground">Lower Lydbrook Baptist Church</p>
-                  <p>Main Road (B4234)</p>
-                  <p>Lydbrook, GL17 9NA</p>
-                  <p>Forest of Dean, Gloucestershire</p>
+                <address className="not-italic bg-white rounded-lg p-4 border">
+                  <p className="font-semibold text-foreground">
+                    Lydbrook Baptist Church
+                  </p>
+                  <p>Lower Lydbrook</p>
+                  <p>Gloucestershire, GL17 9NA</p>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    what3words: nest.tasks.ambushes
+                    On the B4234 (Main Road)
                   </p>
                 </address>
-                <p>
-                  The cemetery can be accessed from the rear of the Baptist
-                  Chapel. There is limited roadside parking along the B4234.
-                </p>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                  <div className="flex items-start gap-2">
+                    <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 shrink-0" />
+                    <p className="text-amber-800 text-xs">
+                      <strong>Access warning:</strong> The path to the cemetery
+                      is steep and the ground is very uneven. Please wear sturdy
+                      footwear and take care. Some memorial stones may be unstable.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 <a
@@ -348,58 +347,36 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" size="sm" className="gap-1.5 border-cwgc-green/30 text-cwgc-green">
+                  <Button variant="outline" size="sm" className="gap-1.5">
                     <ExternalLink className="h-3.5 w-3.5" />
-                    Open in Google Maps
+                    Google Maps
                   </Button>
                 </a>
                 <a
-                  href="https://www.cwgc.org/find-records/find-cemeteries-memorials/"
+                  href="https://www.lydbrookbaptist.co.uk"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" size="sm" className="gap-1.5 border-cwgc-green/30 text-cwgc-green">
+                  <Button variant="outline" size="sm" className="gap-1.5">
                     <ExternalLink className="h-3.5 w-3.5" />
-                    CWGC Cemetery Search
+                    Church Website
                   </Button>
                 </a>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg border border-cwgc-gold/20 aspect-[4/3]">
+            <div className="rounded-xl overflow-hidden shadow-lg border aspect-[4/3]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2470.5!2d-2.5761!3d51.8331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871a3c3c4a5b8eb%3A0x4e8a7a6e5e!2sLydbrook+Baptist+Church!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.2!2d-2.5773!3d51.8282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871a3e8d6f03e99%3A0x2a4b5c6d7e8f9012!2sLydbrook+Baptist+Church!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Location of Lydbrook Baptist Church Cemetery"
+                title="Location of Lydbrook Baptist Church"
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CWGC-style remembrance band */}
-      <section className="bg-cwgc-burgundy py-10">
-        <div className="container mx-auto px-4 text-center">
-          <svg
-            viewBox="0 0 24 32"
-            className="h-8 w-6 text-cwgc-gold mx-auto mb-3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-          >
-            <path d="M12 1 L12 27" />
-            <path d="M4 9 L20 9" />
-          </svg>
-          <p className="text-cwgc-gold-light text-lg font-light italic mb-1">
-            &ldquo;We will remember them&rdquo;
-          </p>
-          <p className="text-white/50 text-xs tracking-widest uppercase">
-            Lest we forget
-          </p>
         </div>
       </section>
     </div>
@@ -421,7 +398,7 @@ function FeatureCard({
 }) {
   return (
     <Link href={href} className="group">
-      <Card className="overflow-hidden border-cwgc-gold/15 shadow-md hover:shadow-lg transition-all duration-300 h-full">
+      <Card className="overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full">
         <div className="relative aspect-[16/9] overflow-hidden">
           <Image
             src={image}
@@ -429,13 +406,13 @@ function FeatureCard({
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/70 to-transparent" />
-          <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/90 text-cwgc-green shadow-sm">
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+          <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/90 text-primary shadow-sm">
             <Icon className="h-5 w-5" />
           </div>
         </div>
         <CardContent className="p-4">
-          <h3 className="font-semibold mb-1 text-cwgc-green group-hover:text-cwgc-green-light transition-colors flex items-center gap-1">
+          <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors flex items-center gap-1">
             {title}
             <ChevronRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
           </h3>

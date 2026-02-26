@@ -100,21 +100,18 @@ function RecordsContent() {
       {/* Header */}
       <div className="relative h-48 overflow-hidden">
         <Image
-          src="/images/cwgc-headstones.png"
-          alt="Commonwealth War Graves headstones"
+          src="/images/old-headstones-detail.png"
+          alt="Headstones in the burial ground"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-cwgc-green/90 to-cwgc-green/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 to-slate-900/40" />
         <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-8">
           <div>
-            <p className="text-cwgc-gold text-xs tracking-[0.2em] uppercase mb-1 font-medium">
-              Cemetery Archive
-            </p>
-            <h1 className="text-3xl font-bold text-cwgc-stone mb-1">
+            <h1 className="text-3xl font-bold text-white mb-1">
               Burial Records
             </h1>
-            <p className="text-cwgc-stone/70">
+            <p className="text-slate-300">
               {records ? `${records.length} records found` : "Loading..."}
             </p>
           </div>
