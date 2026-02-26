@@ -181,17 +181,17 @@ function RecordsContent() {
             ) : records.length === 0 ? (
               <EmptyState searchTerm={searchTerm} />
             ) : (
-              <div className="rounded-lg border overflow-hidden">
+              <div className="rounded-lg border overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow className="bg-stone-50">
                       <TableHead className="font-semibold">Name</TableHead>
-                      <TableHead className="font-semibold">Age</TableHead>
+                      <TableHead className="font-semibold hidden sm:table-cell">Age</TableHead>
                       <TableHead className="font-semibold">
-                        Date of Death
+                        Year
                       </TableHead>
                       <TableHead className="font-semibold">Plot</TableHead>
-                      <TableHead className="font-semibold hidden md:table-cell">
+                      <TableHead className="font-semibold hidden lg:table-cell">
                         Place of Death
                       </TableHead>
                       <TableHead />
@@ -205,19 +205,24 @@ function RecordsContent() {
                         onClick={() => router.push(`/records/${record._id}`)}
                       >
                         <TableCell className="font-medium">
-                          {record.givenName}{" "}
-                          {record.middleNames && `${record.middleNames} `}
+                          <span className="hidden sm:inline">
+                            {record.givenName}{" "}
+                            {record.middleNames && `${record.middleNames} `}
+                          </span>
+                          <span className="sm:hidden">
+                            {record.givenName?.[0]}.{" "}
+                          </span>
                           <span className="font-semibold">
                             {record.surname}
                           </span>
                         </TableCell>
-                        <TableCell className="text-muted-foreground">
+                        <TableCell className="text-muted-foreground hidden sm:table-cell">
                           {record.ageAtDeath
                             ? `${record.ageAtDeath} ${record.agePeriod || "years"}`
                             : "—"}
                         </TableCell>
                         <TableCell className="text-muted-foreground">
-                          {record.dateOfDeath || record.yearOfDeath || "—"}
+                          {record.yearOfDeath || "—"}
                         </TableCell>
                         <TableCell>
                           {record.plot ? (
@@ -226,7 +231,7 @@ function RecordsContent() {
                             "—"
                           )}
                         </TableCell>
-                        <TableCell className="text-muted-foreground text-sm hidden md:table-cell max-w-[200px] truncate">
+                        <TableCell className="text-muted-foreground text-sm hidden lg:table-cell max-w-[200px] truncate">
                           {record.placeOfDeath || "—"}
                         </TableCell>
                         <TableCell>
@@ -246,7 +251,7 @@ function RecordsContent() {
             ) : records.length === 0 ? (
               <EmptyState searchTerm={searchTerm} />
             ) : (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {records.map((record) => (
                   <Link key={record._id} href={`/records/${record._id}`}>
                     <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
