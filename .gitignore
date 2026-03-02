@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# extracted scans (uploaded to Convex file storage, not needed in git)
+/scripts/extracted-scans/

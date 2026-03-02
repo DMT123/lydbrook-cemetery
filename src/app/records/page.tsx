@@ -15,6 +15,7 @@ import {
   MapPin,
   Calendar,
   User,
+  FileImage,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -205,16 +206,23 @@ function RecordsContent() {
                         onClick={() => router.push(`/records/${record._id}`)}
                       >
                         <TableCell className="font-medium">
-                          <span className="hidden sm:inline">
-                            {record.givenName}{" "}
-                            {record.middleNames && `${record.middleNames} `}
-                          </span>
-                          <span className="sm:hidden">
-                            {record.givenName?.[0]}.{" "}
-                          </span>
-                          <span className="font-semibold">
-                            {record.surname}
-                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <span>
+                              <span className="hidden sm:inline">
+                                {record.givenName}{" "}
+                                {record.middleNames && `${record.middleNames} `}
+                              </span>
+                              <span className="sm:hidden">
+                                {record.givenName?.[0]}.{" "}
+                              </span>
+                              <span className="font-semibold">
+                                {record.surname}
+                              </span>
+                            </span>
+                            {record.scannedDocumentStorageId && (
+                              <span title="Scanned document available"><FileImage className="h-3.5 w-3.5 text-primary/60 shrink-0" /></span>
+                            )}
+                          </div>
                         </TableCell>
                         <TableCell className="text-muted-foreground hidden sm:table-cell">
                           {record.ageAtDeath
@@ -258,11 +266,14 @@ function RecordsContent() {
                       <CardContent className="p-5">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <h3 className="font-semibold text-lg">
+                            <h3 className="font-semibold text-lg flex items-center gap-1.5">
                               {record.givenName}{" "}
                               {record.middleNames &&
                                 `${record.middleNames} `}
                               {record.surname}
+                              {record.scannedDocumentStorageId && (
+                                <span title="Scanned document available"><FileImage className="h-4 w-4 text-primary/60 shrink-0" /></span>
+                              )}
                             </h3>
                             {record.ageAtDeath && (
                               <p className="text-sm text-muted-foreground">

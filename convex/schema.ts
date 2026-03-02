@@ -22,6 +22,9 @@ export default defineSchema({
     section: v.optional(v.string()),
     plotNumber: v.optional(v.number()),
     sourceDatabase: v.string(),
+    // Scanned original document (death certificate / headstone photo)
+    scannedDocumentStorageId: v.optional(v.id("_storage")),
+    scannedDocumentFilename: v.optional(v.string()),
   })
     .index("by_surname", ["surname"])
     .index("by_plot", ["plot"])

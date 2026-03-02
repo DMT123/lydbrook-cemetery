@@ -23,7 +23,21 @@ export const list = query({
 export const getById = query({
   args: { id: v.id("burials") },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.id);
+    const burial = await ctx.db.get(args.id);
+    if (!burial) return null;
+
+    // Resolve scanned document URL if one exists
+    let scannedDocumentUrl: string | null = null;
+    if (burial.scannedDocumentStorageId) {
+      scannedDocumentUrl = await ctx.storage.getUrl(
+        burial.scannedDocumentStorageId,
+      );
+    }
+
+    return {
+      ...burial,
+      scannedDocumentUrl,
+    };
   },
 });
 

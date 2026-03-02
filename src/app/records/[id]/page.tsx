@@ -5,6 +5,7 @@ import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -15,11 +16,21 @@ import {
   Users,
   BookOpen,
   LayoutGrid,
+  Image as ImageIcon,
+  ZoomIn,
+  X,
+  Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 function DetailRow({
   icon: Icon,
@@ -41,6 +52,94 @@ function DetailRow({
         <p className="text-sm font-medium">{value}</p>
       </div>
     </div>
+  );
+}
+
+function ScannedDocumentViewer({
+  url,
+  filename,
+  personName,
+}: {
+  url: string;
+  filename: string;
+  personName: string;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Card className="overflow-hidden">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base flex items-center gap-2">
+            <ImageIcon className="h-4 w-4 text-primary" />
+            Original Document
+          </CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Scanned from the parish records — click to view full size
+          </p>
+        </CardHeader>
+        <CardContent className="p-0">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative group w-full cursor-pointer"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={url}
+              alt={`Scanned document for ${personName}`}
+              className="w-full h-auto max-h-80 object-contain bg-stone-100"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 rounded-full p-3 shadow-lg">
+                <ZoomIn className="h-6 w-6 text-stone-700" />
+              </div>
+            </div>
+          </button>
+          <div className="p-3 border-t bg-stone-50/50">
+            <p className="text-xs text-muted-foreground truncate">
+              {filename}
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Full-size lightbox dialog */}
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] p-0 overflow-hidden">
+          <DialogHeader className="p-4 pb-2">
+            <DialogTitle className="flex items-center justify-between pr-8">
+              <span className="flex items-center gap-2">
+                <ImageIcon className="h-4 w-4 text-primary" />
+                {personName} — Original Document
+              </span>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="overflow-auto max-h-[calc(90vh-80px)] p-4 pt-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={url}
+              alt={`Scanned document for ${personName}`}
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="p-3 border-t flex items-center justify-between bg-stone-50">
+            <p className="text-xs text-muted-foreground">{filename}</p>
+            <a
+              href={url}
+              download={filename}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline" size="sm" className="gap-1">
+                <Download className="h-3 w-3" />
+                Open Full Size
+              </Button>
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 
@@ -193,6 +292,15 @@ export default function RecordDetailPage() {
               )}
             </CardContent>
           </Card>
+
+          {/* Scanned Document Viewer */}
+          {record.scannedDocumentUrl && (
+            <ScannedDocumentViewer
+              url={record.scannedDocumentUrl}
+              filename={record.scannedDocumentFilename ?? "document.jpg"}
+              personName={fullName}
+            />
+          )}
 
           <Card className="bg-stone-50">
             <CardContent className="p-4 text-xs text-muted-foreground">

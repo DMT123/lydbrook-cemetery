@@ -11,6 +11,7 @@
 import type * as admin from "../admin.js";
 import type * as adminActions from "../adminActions.js";
 import type * as burials from "../burials.js";
+import type * as documents from "../documents.js";
 import type * as plots from "../plots.js";
 import type * as submissions from "../submissions.js";
 
@@ -24,6 +25,7 @@ declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   adminActions: typeof adminActions;
   burials: typeof burials;
+  documents: typeof documents;
   plots: typeof plots;
   submissions: typeof submissions;
 }>;
