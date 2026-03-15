@@ -2,7 +2,7 @@
 
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,6 +13,10 @@ import {
   User,
   FileText,
   Info,
+  Upload,
+  X,
+  FileImage,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +26,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function RequestRecordPage() {
   const createSubmission = useMutation(api.submissions.create);
+  const generateUploadUrl = useMutation(api.documents.generateUploadUrl);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -35,12 +40,50 @@ export default function RequestRecordPage() {
   const [relationship, setRelationship] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
 
+  const [documentFile, setDocumentFile] = useState<File | null>(null);
+  const [documentPreview, setDocumentPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 15 * 1024 * 1024) {
+      alert("File must be smaller than 15 MB");
+      return;
+    }
+    setDocumentFile(file);
+    setDocumentPreview(URL.createObjectURL(file));
+  };
+
+  const clearFile = () => {
+    setDocumentFile(null);
+    if (documentPreview) URL.revokeObjectURL(documentPreview);
+    setDocumentPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!submitterName.trim() || !submitterEmail.trim() || !burialSurname.trim() || !additionalInfo.trim()) return;
 
     setIsSubmitting(true);
     try {
+      let attachmentStorageId: string | undefined;
+      let attachmentFilename: string | undefined;
+
+      if (documentFile) {
+        const uploadUrl = await generateUploadUrl({});
+        const res = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": documentFile.type },
+          body: documentFile,
+        });
+        if (!res.ok) throw new Error("File upload failed");
+        const { storageId } = (await res.json()) as { storageId: string };
+        attachmentStorageId = storageId;
+        attachmentFilename = documentFile.name;
+      }
+
       await createSubmission({
         submitterName: submitterName.trim(),
         submitterEmail: submitterEmail.trim(),
@@ -50,6 +93,8 @@ export default function RequestRecordPage() {
         burialPlot: burialPlot.trim() || undefined,
         relationship: relationship.trim() || undefined,
         additionalInfo: additionalInfo.trim(),
+        attachmentStorageId: attachmentStorageId as any,
+        attachmentFilename,
       });
 
       setIsSuccess(true);
@@ -297,6 +342,69 @@ export default function RequestRecordPage() {
             </CardContent>
           </Card>
 
+          {/* Supporting Document */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <FileImage className="h-5 w-5 text-primary" />
+                Supporting Document
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                If you have a photograph of a headstone, a scanned certificate, or
+                any other supporting document, you can attach it here. This is
+                optional but helps the administrator verify the record.
+              </p>
+              {documentPreview ? (
+                <div className="relative rounded-lg border overflow-hidden bg-stone-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={documentPreview}
+                    alt="Document preview"
+                    className="w-full h-48 object-contain"
+                  />
+                  <div className="absolute top-2 right-2">
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="h-7 w-7"
+                      onClick={clearFile}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="p-2.5 border-t bg-white/80 text-xs text-muted-foreground flex items-center gap-1.5">
+                    <FileImage className="h-3.5 w-3.5" />
+                    {documentFile?.name} ({((documentFile?.size ?? 0) / 1024).toFixed(0)} KB)
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-accent/30 transition-colors"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-sm text-muted-foreground">
+                    Click to select an image file
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    JPG, PNG &mdash; max 15 MB
+                  </p>
+                </div>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/jpg"
+                className="hidden"
+                onChange={handleFileChange}
+                aria-label="Upload supporting document"
+              />
+            </CardContent>
+          </Card>
+
           <div className="flex gap-3 justify-end">
             <Link href="/records">
               <Button variant="outline" type="button">
@@ -314,7 +422,10 @@ export default function RequestRecordPage() {
               }
             >
               {isSubmitting ? (
-                "Submitting..."
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {documentFile ? "Uploading..." : "Submitting..."}
+                </>
               ) : (
                 <>
                   <Send className="mr-2 h-4 w-4" /> Submit Request

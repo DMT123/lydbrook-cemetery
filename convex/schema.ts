@@ -69,6 +69,8 @@ export default defineSchema({
     status: v.string(),
     adminNotes: v.optional(v.string()),
     createdAt: v.number(),
+    attachmentStorageId: v.optional(v.id("_storage")),
+    attachmentFilename: v.optional(v.string()),
   })
     .index("by_status", ["status"])
     .index("by_date", ["createdAt"]),

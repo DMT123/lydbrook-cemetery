@@ -27,25 +27,29 @@ function StatCard({
   icon: Icon,
   value,
   label,
+  href,
 }: {
   icon: React.ElementType;
   value: string | number | null;
   label: string;
+  href: string;
 }) {
   return (
-    <Card className="border shadow-md bg-white/90 backdrop-blur">
-      <CardContent className="flex items-center gap-3 p-4 md:p-6">
-        <div className="flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          <Icon className="h-5 w-5 md:h-6 md:w-6" />
-        </div>
-        <div className="min-w-0">
-          <p className="text-lg md:text-2xl font-bold tabular-nums truncate">
-            {value ?? <span className="animate-pulse">--</span>}
-          </p>
-          <p className="text-xs md:text-sm text-muted-foreground">{label}</p>
-        </div>
-      </CardContent>
-    </Card>
+    <Link href={href} className="group">
+      <Card className="border shadow-md bg-white/90 backdrop-blur transition-all duration-300 group-hover:shadow-lg group-hover:border-primary/30">
+        <CardContent className="flex items-center gap-3 p-4 md:p-6">
+          <div className="flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+            <Icon className="h-5 w-5 md:h-6 md:w-6" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-lg md:text-2xl font-bold tabular-nums truncate">
+              {value ?? <span className="animate-pulse">--</span>}
+            </p>
+            <p className="text-xs md:text-sm text-muted-foreground">{label}</p>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
 
@@ -115,16 +119,19 @@ export default function HomePage() {
             icon={Users}
             value={stats?.totalBurials ?? null}
             label="Burial Records"
+            href="/records"
           />
           <StatCard
             icon={LayoutGrid}
             value={stats?.totalPlots ?? null}
             label="Plots Mapped"
+            href="/cemetery-plan"
           />
           <StatCard
             icon={MapPin}
             value={stats?.totalSections ?? null}
             label="Sections (A–I)"
+            href="/cemetery-plan"
           />
           <StatCard
             icon={Calendar}
@@ -134,6 +141,7 @@ export default function HomePage() {
                 : null
             }
             label="Year Range"
+            href="/records"
           />
         </div>
       </section>

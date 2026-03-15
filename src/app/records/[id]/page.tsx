@@ -1,11 +1,11 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -18,8 +18,9 @@ import {
   LayoutGrid,
   Image as ImageIcon,
   ZoomIn,
-  X,
   Download,
+  Upload,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +32,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useAdmin } from "@/components/admin-provider";
 
 function DetailRow({
   icon: Icon,
@@ -140,6 +142,69 @@ function ScannedDocumentViewer({
         </DialogContent>
       </Dialog>
     </>
+  );
+}
+
+function AdminDocumentUpload({ burialId }: { burialId: Id<"burials"> }) {
+  const { isAuthenticated } = useAdmin();
+  const generateUploadUrl = useMutation(api.documents.generateUploadUrl);
+  const linkDocument = useMutation(api.documents.linkDocumentToBurial);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  if (!isAuthenticated) return null;
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const uploadUrl = await generateUploadUrl();
+      const result = await fetch(uploadUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      const { storageId } = await result.json();
+      await linkDocument({ burialId, storageId, filename: file.name });
+    } catch (err) {
+      console.error("Upload failed:", err);
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
+  return (
+    <Card className="border-dashed">
+      <CardContent className="p-4">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full gap-2"
+          disabled={isUploading}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          {isUploading ? (
+            <><Loader2 className="h-4 w-4 animate-spin" /> Uploading...</>
+          ) : (
+            <><Upload className="h-4 w-4" /> Upload Document</>
+          )}
+        </Button>
+        <p className="text-[10px] text-muted-foreground text-center mt-2">
+          Admin only — upload or replace scanned certificate / photo
+        </p>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/jpg"
+          className="hidden"
+          onChange={handleUpload}
+          aria-label="Upload document for this record"
+        />
+      </CardContent>
+    </Card>
   );
 }
 
@@ -293,15 +358,6 @@ export default function RecordDetailPage() {
             </CardContent>
           </Card>
 
-          {/* Scanned Document Viewer */}
-          {record.scannedDocumentUrl && (
-            <ScannedDocumentViewer
-              url={record.scannedDocumentUrl}
-              filename={record.scannedDocumentFilename ?? "document.jpg"}
-              personName={fullName}
-            />
-          )}
-
           <Card className="bg-stone-50">
             <CardContent className="p-4 text-xs text-muted-foreground">
               <p>
@@ -317,6 +373,16 @@ export default function RecordDetailPage() {
 
         {/* Sidebar */}
         <div className="space-y-6">
+          {record.scannedDocumentUrl && (
+            <ScannedDocumentViewer
+              url={record.scannedDocumentUrl}
+              filename={record.scannedDocumentFilename ?? "document.jpg"}
+              personName={fullName}
+            />
+          )}
+
+          <AdminDocumentUpload burialId={record._id} />
+
           {otherInPlot.length > 0 && (
             <Card>
               <CardHeader className="pb-3">

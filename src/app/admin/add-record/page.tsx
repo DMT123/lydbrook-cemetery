@@ -2,10 +2,10 @@
 
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/components/admin-provider";
-import { Plus, Check, ArrowLeft, Loader2, LogIn } from "lucide-react";
+import { Plus, Check, ArrowLeft, Loader2, LogIn, Upload, X, FileImage } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,7 +30,10 @@ const SECTIONS = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 export default function AdminAddRecordPage() {
   const { isAuthenticated, isLoading } = useAdmin();
   const createBurial = useMutation(api.burials.create);
+  const generateUploadUrl = useMutation(api.documents.generateUploadUrl);
+  const linkDocument = useMutation(api.documents.linkDocumentToBurial);
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -50,6 +53,23 @@ export default function AdminAddRecordPage() {
   const [notes, setNotes] = useState("");
   const [section, setSection] = useState("");
   const [plotNumber, setPlotNumber] = useState("");
+  const [documentFile, setDocumentFile] = useState<File | null>(null);
+  const [documentPreview, setDocumentPreview] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setDocumentFile(file);
+    const url = URL.createObjectURL(file);
+    setDocumentPreview(url);
+  };
+
+  const clearFile = () => {
+    setDocumentFile(null);
+    if (documentPreview) URL.revokeObjectURL(documentPreview);
+    setDocumentPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
   if (isLoading) {
     return (
@@ -101,6 +121,21 @@ export default function AdminAddRecordPage() {
         notes: notes.trim() || undefined,
         plot,
       });
+
+      if (documentFile) {
+        const uploadUrl = await generateUploadUrl();
+        const result = await fetch(uploadUrl, {
+          method: "POST",
+          headers: { "Content-Type": documentFile.type },
+          body: documentFile,
+        });
+        const { storageId } = await result.json();
+        await linkDocument({
+          burialId: id,
+          storageId,
+          filename: documentFile.name,
+        });
+      }
 
       setIsSuccess(true);
       setTimeout(() => router.push(`/records/${id}`), 1500);
@@ -242,8 +277,11 @@ export default function AdminAddRecordPage() {
                 <SelectContent>
                   <SelectItem value="Certificate for Burial or Cremation">Certificate for Burial or Cremation</SelectItem>
                   <SelectItem value="Certificate for Disposal">Certificate for Disposal</SelectItem>
+                  <SelectItem value="Certificate of Registry of Death">Certificate of Registry of Death</SelectItem>
                   <SelectItem value="Coroner's Order for Burial">Coroner&apos;s Order for Burial</SelectItem>
+                  <SelectItem value="Commonwealth War Graves Citation">Commonwealth War Graves Citation</SelectItem>
                   <SelectItem value="Headstone Engraving">Headstone Engraving</SelectItem>
+                  <SelectItem value="Headstone Photograph">Headstone Photograph</SelectItem>
                   <SelectItem value="Parish Records">Parish Records</SelectItem>
                   <SelectItem value="Family Records">Family Records</SelectItem>
                   <SelectItem value="Other">Other</SelectItem>
@@ -253,6 +291,52 @@ export default function AdminAddRecordPage() {
             <div className="space-y-2">
               <Label htmlFor="certificateNumber">Certificate Number</Label>
               <Input id="certificateNumber" value={certificateNumber} onChange={(e) => setCertificateNumber(e.target.value)} placeholder="e.g. 280" />
+            </div>
+            <div className="space-y-2">
+              <Label>Scanned Document / Photograph</Label>
+              <p className="text-xs text-muted-foreground">
+                Upload a scanned certificate, headstone photograph, or other supporting document.
+              </p>
+              {documentPreview ? (
+                <div className="relative rounded-lg border overflow-hidden bg-stone-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={documentPreview}
+                    alt="Document preview"
+                    className="w-full h-48 object-contain"
+                  />
+                  <div className="absolute top-2 right-2">
+                    <Button type="button" variant="destructive" size="icon" className="h-7 w-7" onClick={clearFile}>
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="p-2 border-t bg-white/80 text-xs text-muted-foreground flex items-center gap-1.5">
+                    <FileImage className="h-3.5 w-3.5" />
+                    {documentFile?.name} ({((documentFile?.size ?? 0) / 1024).toFixed(0)} KB)
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-accent/30 transition-colors"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-sm text-muted-foreground">
+                    Click to select an image file
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    JPG, PNG — max 15 MB
+                  </p>
+                </div>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/jpg"
+                className="hidden"
+                onChange={handleFileChange}
+                aria-label="Upload scanned document"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="notes">Notes</Label>

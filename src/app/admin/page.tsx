@@ -17,7 +17,9 @@ import {
   Clock,
   Eye,
   FileText,
+  FileImage,
   Loader2,
+  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -257,6 +259,35 @@ function Dashboard() {
                     <p className="text-sm bg-muted/50 rounded p-3">
                       {sub.additionalInfo}
                     </p>
+                    {sub.attachmentUrl && (
+                      <div className="flex items-start gap-3 rounded-lg border bg-stone-50 p-3">
+                        <a href={sub.attachmentUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={sub.attachmentUrl}
+                            alt={sub.attachmentFilename ?? "Attachment"}
+                            className="w-24 h-24 object-cover rounded border"
+                          />
+                        </a>
+                        <div className="min-w-0">
+                          <p className="text-xs font-medium flex items-center gap-1.5 mb-0.5">
+                            <FileImage className="h-3.5 w-3.5 text-primary/70" />
+                            Attached Document
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {sub.attachmentFilename}
+                          </p>
+                          <a
+                            href={sub.attachmentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary hover:underline inline-flex items-center gap-1 mt-1"
+                          >
+                            View full size <ExternalLink className="h-3 w-3" />
+                          </a>
+                        </div>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2 pt-1">
                       <p className="text-xs text-muted-foreground flex-1">
                         {new Date(sub.createdAt).toLocaleDateString("en-GB", {

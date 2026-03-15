@@ -9,14 +9,27 @@ export const list = query({
   handler: async (ctx, args) => {
     const { section, limit = 500 } = args;
 
+    let burials;
     if (section) {
-      return await ctx.db
+      burials = await ctx.db
         .query("burials")
         .withIndex("by_section", (q) => q.eq("section", section))
         .take(limit);
+    } else {
+      burials = await ctx.db.query("burials").take(limit);
     }
 
-    return await ctx.db.query("burials").take(limit);
+    return Promise.all(
+      burials.map(async (burial) => {
+        let scannedDocumentUrl: string | null = null;
+        if (burial.scannedDocumentStorageId) {
+          scannedDocumentUrl = await ctx.storage.getUrl(
+            burial.scannedDocumentStorageId,
+          );
+        }
+        return { ...burial, scannedDocumentUrl };
+      }),
+    );
   },
 });
 
@@ -89,7 +102,17 @@ export const searchAll = query({
       .withSearchIndex("search_name", (q) => q.search("surname", args.term))
       .take(50);
 
-    return byName;
+    return Promise.all(
+      byName.map(async (burial) => {
+        let scannedDocumentUrl: string | null = null;
+        if (burial.scannedDocumentStorageId) {
+          scannedDocumentUrl = await ctx.storage.getUrl(
+            burial.scannedDocumentStorageId,
+          );
+        }
+        return { ...burial, scannedDocumentUrl };
+      }),
+    );
   },
 });
 

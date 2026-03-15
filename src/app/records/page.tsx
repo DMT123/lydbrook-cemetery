@@ -262,7 +262,24 @@ function RecordsContent() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {records.map((record) => (
                   <Link key={record._id} href={`/records/${record._id}`}>
-                    <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
+                    <Card className="hover:shadow-md transition-shadow cursor-pointer h-full overflow-hidden">
+                      {record.scannedDocumentUrl && (
+                        <div className="relative h-32 bg-stone-100 border-b">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={record.scannedDocumentUrl}
+                            alt={`Certificate for ${record.givenName} ${record.surname}`}
+                            className="w-full h-full object-cover opacity-90"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2 right-2">
+                            <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 bg-white/80 backdrop-blur-sm">
+                              <FileImage className="h-3 w-3 mr-1" />
+                              Certificate
+                            </Badge>
+                          </div>
+                        </div>
+                      )}
                       <CardContent className="p-5">
                         <div className="flex items-start justify-between mb-3">
                           <div>
@@ -271,7 +288,7 @@ function RecordsContent() {
                               {record.middleNames &&
                                 `${record.middleNames} `}
                               {record.surname}
-                              {record.scannedDocumentStorageId && (
+                              {record.scannedDocumentStorageId && !record.scannedDocumentUrl && (
                                 <span title="Scanned document available"><FileImage className="h-4 w-4 text-primary/60 shrink-0" /></span>
                               )}
                             </h3>

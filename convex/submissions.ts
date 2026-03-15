@@ -11,6 +11,8 @@ export const create = mutation({
     burialPlot: v.optional(v.string()),
     relationship: v.optional(v.string()),
     additionalInfo: v.string(),
+    attachmentStorageId: v.optional(v.id("_storage")),
+    attachmentFilename: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("submissions", {
@@ -26,14 +28,26 @@ export const list = query({
     status: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    let submissions;
     if (args.status) {
-      return await ctx.db
+      submissions = await ctx.db
         .query("submissions")
         .withIndex("by_status", (q) => q.eq("status", args.status!))
         .order("desc")
         .collect();
+    } else {
+      submissions = await ctx.db.query("submissions").order("desc").collect();
     }
-    return await ctx.db.query("submissions").order("desc").collect();
+
+    return Promise.all(
+      submissions.map(async (sub) => {
+        let attachmentUrl: string | null = null;
+        if (sub.attachmentStorageId) {
+          attachmentUrl = await ctx.storage.getUrl(sub.attachmentStorageId);
+        }
+        return { ...sub, attachmentUrl };
+      }),
+    );
   },
 });
 
